@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvasDemo</title>
+    <!-- <script src="main.js"></script> 引用外部连接的时候不生效为啥 -->
+    <style>
+        * {padding:0px;margin:0px;}
+        body {background-color:blanchedalmond;}
+        #canvas {
+            background-color: tomato;
+            height: 500px;
+            position: relative;
+           box-shadow: 0px 5px 10px 0px rgb(139, 53, 37); 
+        }
+        #noumenon {
+            margin: 50px 0 0 50px;
+            background:rgb(255, 221, 71);
+            border: 1px solid rgb(179, 147, 9);
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">这是个虚假的画板，当鼠标移动的很快的时候，画出的不是连续的线，而是断续的点，这是因为浏览器捕捉用户事件是有间隔时间的内置cdd</div>
+    <canvas id="noumenon" width=300 height=300></canvas>
+    <script>
+        //开关
+        var flag = false;   //画的时候开启，不画的时候关闭
+        //获取元素
+        var div =document.getElementById('canvas')
+
+        //鼠标按下
+        div.onmousedown = function(user){
+            flag = true;
+            var x = user.clientX
+            var y = user.clientY
+            var divA = document.createElement('div')
+            divA.style="width: 6px; height: 6px;"
+            +"background: black; border-radius: 3px;"
+            +"position: absolute; left: "+(x-0)+"px; "+"top: "+(y-0)+"px;"
+            div.appendChild(divA)
+        }
+
+        //鼠标移动    此时处在一直捕获鼠标移动的状态
+        div.onmousemove = function(user){
+            if(flag){
+                var x = user.clientX
+                var y = user.clientY
+                var divA = document.createElement('div')
+                divA.style="width: 6px; height: 6px;"
+                +"background: black; border-radius: 3px;"
+                +"position: absolute; left: "+(x-0)+"px; "+"top: "+(y-0)+"px;"
+                div.appendChild(divA)
+            }else{
+
+            }
+        }
+        //松开鼠标
+        div.onmouseup=function(user){
+            flag = false;
+        }
+
+        // ---------------------------------------------------
+        // 真的canvas
+        var yy = document.getElementById('noumenon');
+        var context = yy.getContext('2d');
+
+        context.fillStyle = 'tomato';
+        context.fillRect(0,0,100,200);
+    </script>
+</body>
+</html>
