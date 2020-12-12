@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <style>
+        * {padding: 0px; margin: 0px;}
+        body {
+            /* background-color: tomato; */
+        }
+        #canvas {
+            background-color: #f6f6f6;
+            box-shadow: 2px 2px 5px rgb(131, 131, 131,.3);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    // 获取页面canvas
+    var canvas = document.getElementById("canvas")
+    var context = canvas.getContext('2d')
+
+    var painting = true
+    canvas.onmousedown = function(incident){
+        var x= incident.clientX
+        var y= incident.clientY
+        context.beginPath()
+        context.moveTO(x,y)
+
+    }
+    canvas.onmousemove = function(incident){
+
+    }
+    canvas.onmouseup=function(incident){
+
+    }
+</script>
+</html>
